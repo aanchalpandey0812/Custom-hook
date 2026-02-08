@@ -1,0 +1,56 @@
+body {
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: #111;
+    color: white;
+
+}
+.page {
+    padding: 40px;
+}
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+    gap: 25px;
+}
+   
+.card {
+    padding: 20px;
+    border: 2px solid #444;
+}
+.photo-box {
+    width: 100%;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255, 0.6);
+    display: flex;
+    font-weight: bold;
+}
+.caption {
+    margin-top: 15px;
+    font-size: 14px;
+}
+.error-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error-box {
+    width: 600px;
+    height: 600px;
+    background-color: black;
+    border:  3px solid #555;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error-box  p {
+    font-size: 20px;
+}
+    

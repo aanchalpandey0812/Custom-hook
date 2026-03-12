@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useFetch from "./hooks/useFetch";
 import "./App.css";
 
@@ -8,41 +8,61 @@ function App() {
             "https://jsonplaceholder.typicode.com/posts?_limit=8"
         );
 
-    if (error) {
-        return (
-            <div className="error-wrapper">
-                <div className="error-box">
-                    <p> Error: Failed to fetch</p>
-                </div>
+    useEffect(() => {
+        const observer = new  IntersectionObserver(
+          (entries) => {
+                entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+            }
+        });
+    },
+    { threshold: 0.2 }
+);
+    const elements =
+        document.querySelectorAll(".reveal");
+    elements.forEach((el) =>
+        observer.observe(el));
+
+
+    return () => observer.disconnect();
+}, []);
+
+if (error) {
+    return (
+        <div className="error-wrapper">
+            <div className="error-box">
+                <p> Error: Failed to fetch</p>
             </div>
-        );
-    }
-    
-    if (loading) {
-        return (
+        </div>
+    );
+}
+
+if (loading) {
+    return (
         <div className="error-wrapper">
             <div className="error-box">
                 <p>Loading...</p>
             </div>
         </div >
     );
-  }
-  return (
+}
+return (
     <div className="page">
-        <h2 classsName="title">Photos</h2>
+        <h2 className="title">Photos</h2>
         <div className="grid">
             {data.map((item) => (
-                <div key={item.id} className="card">
-                    <div className="photo-box" style={{backgroundColor: randomColor() }}>
+                <div key={item.id} className="card reveal">
+                    <div className="photo-box" style={{ backgroundColor: randomColor() }}>
                         600*600
-                        </div>
-                        <p className="caption">{item.title}</p>
-                        </div>
+                    </div>
+                    <p className="caption">{item.title}</p>
+                </div>
             ))}
         </div>
     </div>
-  );
-}
+);
+
 
 function randomColor() {
     const colors = [
@@ -59,6 +79,7 @@ function randomColor() {
     ];
     return colors[Math.floor(Math.random() * colors.length)];
 }
-
+}
 export default App;
+
 

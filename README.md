@@ -1,2 +1,18 @@
- netlify Project deploy Link:https://69b2dead8d4a212c69ef9c05--tubular-kitsune-b04a93.netlify.app/
+CUSTOM-HOOK Assignment:In this assignment i have to make a react application that tells how to create and use a custoom hook for fetching data from API.
+
+AS mentor mentioned the requirements such as :
+1.custom hook should named as useFetch I did that.
+2.i create hook which accept url as input.
+3.fetch() method is used to fetch data from API.
+4.It is smoothly showing data,loading and error state.
+5.proper UI for loading and erroe states.
+
+I kept CSS very simple as i am begginer but i will try to explore it more.
+
+How it works:useFetch takes a URL as input then uses useEffect to call API and useState to store data,loading state and error message,after that it returns the value to App.js and App.js display the fetched data .
+
+common API i used is 'https://jsonplaceholder.typicode.com/posts'.
+
+from this i learned how to create custom react hook how we can fetch data from API efficiently and simple use of useFetch.useStateand useEffect.Also implimentation of loading and error hamdling.
+UI and css styling also a little.
 

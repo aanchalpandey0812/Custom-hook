@@ -1,85 +1,25 @@
-import React, { useEffect } from "react";
 import useFetch from "./hooks/useFetch";
 import "./App.css";
 
 function App() {
-    const { data, loading, error } =
-        useFetch(
-            "https://jsonplaceholder.typicode.com/posts?_limit=8"
-        );
+    const {data, loading, error } = useFetch(
+        "https://jsonplaceholder.typicode.com/posts" );
 
-    useEffect(() => {
-        const observer = new  IntersectionObserver(
-          (entries) => {
-                entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-            }
-        });
-    },
-    { threshold: 0.2 }
-);
-    const elements =
-        document.querySelectorAll(".reveal");
-    elements.forEach((el) =>
-        observer.observe(el));
-
-
-    return () => observer.disconnect();
-}, []);
-
-if (error) {
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>{error}</p>;
     return (
-        <div className="error-wrapper">
-            <div className="error-box">
-                <p> Error: Failed to fetch</p>
-            </div>
-        </div>
-    );
-}
+        <div className="container">
+            <h1>Product List</h1>
 
-if (loading) {
-    return (
-        <div className="error-wrapper">
-            <div className="error-box">
-                <p>Loading...</p>
-            </div>
-        </div >
-    );
-}
-return (
-    <div className="page">
-        <h2 className="title">Photos</h2>
-        <div className="grid">
-            {data.map((item) => (
-                <div key={item.id} className="card reveal">
-                    <div className="photo-box" style={{ backgroundColor: randomColor() }}>
-                        600*600
+            <div className="card-container">
+                {data.map((item) => (
+                    <div className="card" key={item.id}>
+                    <p>{item.title}</p>
                     </div>
-                    <p className="caption">{item.title}</p>
-                </div>
-            ))}
-        </div>
-    </div>
-);
-
-
-function randomColor() {
-    const colors = [
-        "#6c5ce7",
-        "#00b894",
-        "#0984e3",
-        "#e17055",
-        "#fd79a8",
-        "#55efc4",
-        "#ffeaa7",
-        "#636e72",
-        "#353",
-        "#0145",
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
-}
+           ))}
+           </div>
+           </div>
+            );
 }
 export default App;
-
-
+           
